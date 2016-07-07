@@ -1,0 +1,10 @@
+Jul 07, 2016 1:07:22 PM org.apache.catalina.startup.Catalina initDirs
+SEVERE: Cannot find specified temporary folder at /work/repo/github/ebx-stripped/EBXServer/catalina.base/temp
+Jul 07, 2016 1:07:22 PM org.apache.catalina.startup.Catalina load
+WARNING: Unable to load server configuration from [/work/repo/github/ebx-stripped/EBXServer/catalina.base/conf/server.xml]
+Jul 07, 2016 1:07:22 PM org.apache.catalina.startup.Catalina initDirs
+SEVERE: Cannot find specified temporary folder at /work/repo/github/ebx-stripped/EBXServer/catalina.base/temp
+Jul 07, 2016 1:07:22 PM org.apache.catalina.startup.Catalina load
+WARNING: Unable to load server configuration from [/work/repo/github/ebx-stripped/EBXServer/catalina.base/conf/server.xml]
+Jul 07, 2016 1:07:22 PM org.apache.catalina.startup.Catalina start
+SEVERE: Cannot start server. Server instance is not configured.

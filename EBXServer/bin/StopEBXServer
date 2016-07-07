@@ -1,0 +1,9 @@
+#!/bin/bash
+export WORKSPACE_HOME=/work/repo/github/ebx-stripped
+export EBX_HOME=$WORKSPACE_HOME/EBXHome
+export CATALINA_HOME=$WORKSPACE_HOME/Tomcat/apache-tomcat-7.0.42
+export EBX_SERVER=$WORKSPACE_HOME/EBXServer
+export CATALINA_OPTS='-Xmx4G -Debx.properties=${EBX_HOME}/ebx.properties -Debx.home=${EBX_HOME}'
+export CATALINA_BASE=$EBX_SERVER
+
+$CATALINA_HOME/bin/shutdown.sh

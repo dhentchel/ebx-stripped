@@ -138,7 +138,9 @@
                
 		<Context path="/ebx" docBase="./ebx.war" crossContext="true" cookies="false"/>
 		
-		<Context path="/ps-mdm" docBase="../../ps-mdm/webapps/ps-mdm"/>
+<!--
+		<Context path="/ps-mdm" docBase="./ps-mdm.war"/>
+ -->
 				
       </Host>
     </Engine>

@@ -1,0 +1,8 @@
+#!/bin/bash
+export EBX_HOME=/opt/ebx5/EBXHome
+export CATALINA_HOME=/opt/ebx5/Tomcat/apache-tomcat-7.0.42
+export EBX_SERVER=/opt/ebx5/EBXServer
+export CATALINA_OPTS='-Xmx4G -Debx.properties=${EBX_HOME}/ebx.properties -Debx.home=${EBX_HOME}'
+export CATALINA_BASE=$EBX_SERVER/catalina.base
+
+$CATALINA_HOME/bin/shutdown.sh

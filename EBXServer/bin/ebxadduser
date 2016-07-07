@@ -1,0 +1,51 @@
+#!/bin/bash
+# Add a remote SSH user to this host
+if [ $# -ne 2 ]
+  then
+    echo "Usage: ebxadduser USRNAME PUBKEYFILE"
+    echo "  where USRNAME may be 'admin', 'developer' or any other name."
+    echo "If user name starts with 'admin', he will be given admin/sudo rights."
+    exit
+fi
+usrname=$1
+pubkeyfile=$2
+#
+if [ `id -u $usrname 2>/dev/null || echo -1` -ge 0 ];
+  then 
+    echo "User already exists, adding authorized key"
+    sudo bash -c "cat $pubkeyfile >> /home/$usrname/.ssh/authorized_keys"
+    exit;
+fi
+# Now create the user
+#  any username starting with 'admin' or 'dev' maps to admin / dev group.
+if [[ "$usrname" == "admin" ]]
+  then
+    echo "Creating admin user"
+    sudo adduser --password "" $usrname
+#    sudo bash -c  "echo '$usrname  ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers.d/cloud-init"
+  echo "Use 'sudo visudo' to add admin to the sudo users list"
+elif [[ "$usrname" == "developer" ]]
+  then
+    echo "Creating developer user"
+    sudo adduser --password "" $usrname
+  else
+    echo "Creating anonymous user"
+    sudo adduser --password "" $usrname
+fi
+#
+# Register SSH key
+sudo mkdir /home/$usrname/.ssh
+sudo chmod 700 /home/$usrname/.ssh
+sudo touch /home/$usrname/.ssh/authorized_keys
+sudo chown -R $usrname /home/$usrname/.ssh
+sudo chgrp -R $usrname /home/$usrname/.ssh
+sudo bash -c "cat $pubkeyfile >> /home/$usrname/.ssh/authorized_keys"
+sudo chmod 600 /home/$usrname/.ssh/authorized_keys
+#
+# Set up aliases and commands
+sudo cp -r /home/ec2-user/scripts/.local /home/$usrname
+sudo chown -R $usrname /home/$usrname/.local
+sudo bash -c "cat scripts/bashrc >> ~/.bashrc"
+
+echo "User created as $usrname."
+
